@@ -1,0 +1,38 @@
+import csv
+
+with open('rocket.csv', encoding='utf8') as file:
+    data = csv.reader(file, delimiter=',', quotechar='"')
+    dataset = list(data)[1:]
+
+
+def task1(month: str):
+    """
+    task1 - читает кол-во полученных шифров в определенный месяц
+
+    :param month: хранит месяц в который были получены шифры
+    :return: возвращает кол-во шифров полученных в определенный месяц
+    """
+    return f'В {month} месяц было получено - {len([i for i in dataset if month in i[0]])} шифров'
+
+
+print(task1(input()))
+
+def task2():
+    """
+    task2 - Сортирует список
+
+    sorted_dataset - Хранит отсортированный список
+    if month in i[0].split('-')[1] and date in i[0].split('-')[2] and str(year) in i[0].split('-')[0] - Сортируем список по дате
+    :return: Возвращает отсортированный список
+    """
+    sorted_dataset = []
+    for year in range(900, 2000):
+        for month in ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']:
+            for date in ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28',  '29', '30', '31']:
+                for i in dataset:
+                    if month in i[0].split('-')[1] and date in i[0].split('-')[2] and str(year) in i[0].split('-')[0]:
+                        sorted_dataset.append(i)
+    return sorted_dataset
+
+
+print(task2())
